@@ -110,7 +110,6 @@ public:
 };
 
 
-
 enum
 {
 	NOT_OFFICIAL_INSTALL = 1, OUT_DATE = 2
