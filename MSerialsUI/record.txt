@@ -1,0 +1,14 @@
+initial cv_train_inv
+start record
+front descriptor 8100
+front descriptor 8100
+front descriptor 8100
+front descriptor 8100
+back descriptor 8100
+back descriptor 8100
+back descriptor 8100
+back descriptor 8100
+back descriptor 8100
+sfm typeis 5 rows:9cols:8100
+slm typeis 4rows:9cols:1
+svm is empty 

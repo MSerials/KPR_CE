@@ -1,0 +1,19 @@
+﻿<Window x:Class="MSerialsUICSharp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MSerialsUICSharp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="956.76" Width="1620.638">
+    <Grid Margin="0,0,158.242,185.022">
+        <Menu Margin="0,0,0,674" HorizontalAlignment="Left" Width="428.753">
+        </Menu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="392*"/>
+            <ColumnDefinition Width="125*"/>
+        </Grid.ColumnDefinitions>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,5 @@
+x:22
+y32
+width:36
+height:67
+E:\sunkun_AET\Projects\MSerialsKernel\x64\Release\第一个例子\HOLEFRONT\a_06.bmp

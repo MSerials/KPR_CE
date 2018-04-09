@@ -1,0 +1,816 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#include ""res\\MSerialsUI.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#include ""l.CHS\\afxprint.rc""    // 打印/打印预览资源\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""l.CHS\\afxribbon.rc""        // MFC 功能区和控制条资源\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MSerialsUI.ico"
+
+IDR_MSerialsUITYPE      ICON                    "res\\MSerialsUIDoc.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+
+IDB_MAIN                BITMAP                  "res\\main.bmp"
+
+IDB_FILELARGE           BITMAP                  "res\\filelarge.bmp"
+
+IDB_FILESMALL           BITMAP                  "res\\filesmall.bmp"
+
+IDB_WRITELARGE          BITMAP                  "res\\writelarge.bmp"
+
+IDB_WRITESMALL          BITMAP                  "res\\writesmall.bmp"
+
+IDB_BUTTONS             BITMAP                  "res\\buttons.bmp"
+
+IDB_INFO                BITMAP                  "res\\info.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MAINFRAME_256 TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "新建(&N)\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "打开(&O)...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "保存(&S)\tCtrl+S",              ID_FILE_SAVE
+        MENUITEM "另存为(&A)...",                  ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "打印(&P)...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览(&V)",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "撤消(&U)\tCtrl+Z",              ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
+        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM "标题栏(&C)",                     ID_VIEW_CAPTION_BAR
+        POPUP "应用程序外观(&A)"
+        BEGIN
+            MENUITEM "Windows 2000(&2)",            ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office XP(&X)",               ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "Windows XP(&W)",              ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 2003(&3)",             ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008
+            POPUP "Office 2007(&7)"
+            BEGIN
+                MENUITEM "蓝色样式(&B)",                    ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "黑色样式(&L)",                    ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "银色样式(&S)",                    ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "水绿色样式(&A)",                   ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+        END
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 MSerialsUI(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_EDIT MENU
+BEGIN
+    POPUP "编辑"
+    BEGIN
+        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
+        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
+    END
+END
+
+IDR_WINDOWS_MENU MENU
+BEGIN
+    MENUITEM "新建窗口(&N)",                    ID_WINDOW_NEW
+END
+
+IDR_HELP_MENU MENU
+BEGIN
+    MENUITEM "关于 MSerialsUI(&A)...",        ID_APP_ABOUT
+END
+
+IDR_THEME_MENU MENU
+BEGIN
+    MENUITEM "Office 2007 (蓝色样式)(&B)",      ID_VIEW_APPLOOK_OFF_2007_BLUE
+    MENUITEM "Office 2007 (黑色样式)(&L)",      ID_VIEW_APPLOOK_OFF_2007_BLACK
+    MENUITEM "Office 2007 (银色样式)(&S)",      ID_VIEW_APPLOOK_OFF_2007_SILVER
+    MENUITEM "Office 2007 (水绿色样式)(&A)",     ID_VIEW_APPLOOK_OFF_2007_AQUA
+    MENUITEM "Windows 7(&D)",               ID_VIEW_APPLOOK_WINDOWS_7
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 180, 65
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MSerialsUI"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,18,0,144,14,ES_AUTOHSCROLL
+END
+
+IDD_CAMERA2 DIALOGEX 0, 0, 587, 275
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "训练图片",IDC_TRAIN,63,230,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "训练图片咯",IDC_BUTTON_TRYTRAIN,7,231,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "载入图片",IDC_BUTTON_BREADIMG,345,6,50,14
+    PUSHBUTTON      "测试图片",IDC_BUTTON_BDEAL_TEST,345,36,50,14
+    PUSHBUTTON      "保存图片",IDC_BUTTON_BSAVEIMAGE,423,36,50,14
+    PUSHBUTTON      "搜索框",IDC_BUTTON_DRAW_BRECT,270,6,50,14
+    PUSHBUTTON      "显示框",IDC_BUTTON_SHOW_BRECT,270,36,50,14
+    PUSHBUTTON      "保存当前图片为模板",IDC_BUTTON_SAVE_MODEL,60,24,84,14
+    PUSHBUTTON      "读取模板1",IDC_BUTTON_READ_MODEL,0,6,42,14
+    PUSHBUTTON      "显示模板",IDC_BUTTON_DRAW_TEST_PIC,124,231,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "采集相机图片",IDC_BUTTON_SNAP2,423,6,50,14
+    EDITTEXT        IDC_EDIT_THRESHOLD_VALUE,223,204,49,14,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    PUSHBUTTON      "保存参数",IDC_BUTTON_SAVE_PARA2,222,220,50,14,NOT WS_VISIBLE
+    GROUPBOX        "",IDC_STATIC,0,0,324,61
+    GROUPBOX        "",IDC_STATIC,324,0,168,61
+    PUSHBUTTON      "读取模板2",IDC_BUTTON_READ_MODEL2,42,6,42,14
+    PUSHBUTTON      "读取模板3",IDC_BUTTON_READ_MODEL3,85,6,42,14
+    PUSHBUTTON      "读取模板4",IDC_BUTTON_READ_MODEL4,128,6,42,14
+    PUSHBUTTON      "读取模板5",IDC_BUTTON_READ_MODEL5,171,6,42,14
+    PUSHBUTTON      "清除模板",IDC_BUTTON_CLEAR_MODEL,0,44,42,14
+    LTEXT           "Static",IDC_STATIC_MODEL_NUM,114,48,78,8
+END
+
+IDD_CAMERA1 DIALOGEX 0, 0, 592, 387
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "搜索框",IDC_BUTTON_DRAW_RECT,103,6,50,14
+    PUSHBUTTON      "Internet",IDC_BUTTON_DRAW_GET_VENODR,438,126,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "载入图片",IDC_BUTTON_READIMG1,198,6,50,14
+    PUSHBUTTON      "测试图片",IDC_BUTTON_DEAL_TEST,198,36,50,14
+    PUSHBUTTON      "显示框",IDC_BUTTON_SHOW_RECT,103,36,50,14
+    PUSHBUTTON      "保存图片",IDC_BUTTON_SAVEIMAGE,276,36,50,14
+    PUSHBUTTON      "训练图片",IDC_BUTTON_TRAIN_IMAGES,18,6,50,14
+    PUSHBUTTON      "测试图片",IDC_BUTTON_PREDICT,18,36,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "采集相机图片",IDC_BUTTON_SNAP1,276,6,50,14
+    GROUPBOX        "",IDC_STATIC,0,0,168,61
+    GROUPBOX        "",IDC_STATIC,177,0,321,61
+    PUSHBUTTON      "保存为正面图",IDC_BUTTON_SAVEASF,348,6,50,14
+    PUSHBUTTON      "保存为反面图",IDC_BUTTON_SAVEASB,348,36,50,14
+    PUSHBUTTON      "正面文件夹",IDC_BUTTON_OPENF,402,6,50,14
+    PUSHBUTTON      "反面文件夹",IDC_BUTTON_OPENB,402,36,50,14
+END
+
+IDHELP DIALOGEX 0, 0, 402, 275
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MSerialsUI"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Button1",IDC_BUTTON_COMFIRM,42,150,50,14
+    EDITTEXT        IDC_STATIC_INPUTSTR,48,12,240,108,ES_AUTOHSCROLL
+    PUSHBUTTON      "LOADPIC",IDC_BUTTON_LOADPIC,234,150,50,14
+    PUSHBUTTON      "ReLoadScript",IDC_BUTTON_RELOADSCRIPT,42,186,50,14
+END
+
+IDD_RS232 DIALOGEX 0, 0, 742, 275
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "新增项目",IDC_BUTTON_SAVE,6,25,50,14
+    COMBOBOX        IDC_COMBO_PRJ_SEL,40,9,120,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "串口选择",IDC_STATIC,179,11,28,8
+    COMBOBOX        IDC_COMBO_COMSEL,210,8,70,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "打开串口",IDC_BUTTON_COMFIRM,178,32,50,14
+    LTEXT           "波特率：9600 校验：NONE 数据位：8 停止位：1",IDC_STATIC,179,49,153,8
+    PUSHBUTTON      "关闭串口",IDC_BUTTON_CLOSEPORT,232,32,50,14
+    GROUPBOX        "",IDC_STATIC_INDICATE,286,5,12,12,0,WS_EX_TRANSPARENT
+    LTEXT           "项目选择",IDC_STATIC,9,11,28,8
+    EDITTEXT        IDC_EDIT_NEWPRJ,64,25,96,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "刷新相机",IDC_BUTTON_REFRESHCAM,347,41,50,14
+    GROUPBOX        "",IDC_STATIC,0,0,168,61
+    GROUPBOX        "",IDC_STATIC,170,0,168,61
+    GROUPBOX        "",IDC_STATIC,340,0,168,61
+    EDITTEXT        IDC_EDIT_SNAPDELAY,412,8,90,14,ES_AUTOHSCROLL
+    LTEXT           "相机拍摄延时 ms",IDC_STATIC,344,11,53,8
+    EDITTEXT        IDC_EDIT_EXPLOSURE,412,24,90,14,ES_AUTOHSCROLL
+    LTEXT           "相机曝光时间 us",IDC_STATIC,344,26,51,8
+    PUSHBUTTON      "保存参数",IDC_BUTTON_SAVEPARAPRJ,452,41,50,14
+    PUSHBUTTON      "删除当前项目",IDC_BUTTON_DEL_PRJ,24,42,108,14
+    GROUPBOX        "",IDC_STATIC,510,0,168,61
+    EDITTEXT        IDC_EDIT_ACCURCY,584,12,90,14,ES_AUTOHSCROLL
+    LTEXT           "相机二相似度临界值",IDC_STATIC,514,14,63,8
+    PUSHBUTTON      "保存参数",IDC_BUTTON_SAVEACC,564,36,50,14
+END
+
+IDD_SETTINGS DIALOGEX 0, 0, 402, 275
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_SRC,4,22,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_DST,4,48,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "参数复制到：",IDC_STATIC,42,36,42,8
+    GROUPBOX        "参数复制",IDC_STATIC,0,12,156,72
+    PUSHBUTTON      "确认",IDC_BUTTON_APPLICATE,35,63,50,14
+END
+
+IDD_VERITY DIALOGEX 0, 0, 198, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MSerialsUI"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_PASSWORD,0,12,198,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "确认",IDC_BUTTON_COMFIRM_SECRET,72,36,50,14
+END
+
+IDD_DATA_LOOKUP DIALOGEX 0, 0, 592, 387
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "历史数据",IDC_BUTTON_HISTORY_DATA,110,21,50,14
+    PUSHBUTTON      "统计图",IDC_BUTTON_STATISTIC,8,22,50,14
+    GROUPBOX        "",-1,0,0,168,61
+END
+
+IDD_HISTORY DIALOGEX 0, 0, 516, 359
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MSerialsUI"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_HISTORTY,0,0,510,354,ES_AUTOHSCROLL
+END
+
+IDD_STATICS_DATA DIALOGEX 0, 0, 354, 318
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MSerialsUI"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "",IDC_STATIC_DATA_SHOW,0,0,354,318
+END
+
+IDD_VERITY_ACCESS DIALOGEX 0, 0, 227, 91
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确认",IDC_BUTTON_OK,23,70,50,14
+    PUSHBUTTON      "取消",IDC_BUTTON_CANCEL,135,70,50,14
+    EDITTEXT        IDC_EDIT_SERIAL,70,7,148,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PWD,70,30,148,14,ES_AUTOHSCROLL
+    LTEXT           "序列",IDC_STATIC,26,10,15,8
+    LTEXT           "注册",IDC_STATIC,27,33,15,8
+END
+
+IDD_VERITY_ACCESS_TEST DIALOGEX 0, 0, 227, 91
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确认",IDC_BUTTON_CAL,91,70,50,14
+    EDITTEXT        IDC_EDIT_SERIAL_T,70,7,148,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PWD_T,70,30,148,14,ES_AUTOHSCROLL
+    LTEXT           "序列",IDC_STATIC,26,10,15,8
+    LTEXT           "注册",IDC_STATIC,27,33,15,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "TODO: <公司名>"
+            VALUE "FileDescription", "MSerialsUI"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "MSerialsUI.exe"
+            VALUE "LegalCopyright", "TODO:  (C) <公司名>。  保留所有权利。"
+            VALUE "OriginalFilename", "MSerialsUI.exe"
+            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 173
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_CAMERA2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 580
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 268
+    END
+
+    IDD_CAMERA1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 585
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 380
+    END
+
+    IDHELP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 395
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 268
+    END
+
+    IDD_RS232, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 684
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 268
+    END
+
+    IDD_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 395
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 268
+    END
+
+    IDD_VERITY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 191
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_DATA_LOOKUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 585
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 380
+    END
+
+    IDD_HISTORY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 509
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 352
+    END
+
+    IDD_STATICS_DATA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 347
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 311
+    END
+
+    IDD_VERITY_ACCESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 84
+    END
+
+    IDD_VERITY_ACCESS_TEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 84
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Ribbon
+//
+
+IDR_RIBBON              RT_RIBBON_XML           "res\\ribbon.mfcribbon-ms"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CAMERA2 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CAMERA1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDHELP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_RS232 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SETTINGS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_VERITY AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DATA_LOOKUP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_HISTORY AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_STATICS_DATA AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_VERITY_ACCESS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_VERITY_ACCESS_TEST AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE 初始化失败。  请确保 OLE 库是正确的版本。"
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "MSerialsUI\n\nMSerialsUI\n\n\nMSerialsUI.Document\nMSerialsUI.Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "MSerialsUI"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "创建新文档\n新建"
+    ID_FILE_OPEN            "打开现有文档\n打开"
+    ID_FILE_CLOSE           "关闭活动文档\n关闭"
+    ID_FILE_SAVE            "保存活动文档\n保存"
+    ID_FILE_SAVE_AS         "用新名称保存活动文档\n另存为"
+    ID_FILE_PAGE_SETUP      "更改打印选项\n页面设置"
+    ID_FILE_PRINT_SETUP     "更改打印机选项和打印选项\n打印设置"
+    ID_FILE_PRINT           "打印活动文档\n打印"
+    ID_FILE_PRINT_DIRECT    "使用当前选项打印活动文档\n快速打印"
+    ID_FILE_PRINT_PREVIEW   "显示整页\n打印预览"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号和版权信息\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "打开此文档"
+    ID_FILE_MRU_FILE2       "打开此文档"
+    ID_FILE_MRU_FILE3       "打开此文档"
+    ID_FILE_MRU_FILE4       "打开此文档"
+    ID_FILE_MRU_FILE5       "打开此文档"
+    ID_FILE_MRU_FILE6       "打开此文档"
+    ID_FILE_MRU_FILE7       "打开此文档"
+    ID_FILE_MRU_FILE8       "打开此文档"
+    ID_FILE_MRU_FILE9       "打开此文档"
+    ID_FILE_MRU_FILE10      "打开此文档"
+    ID_FILE_MRU_FILE11      "打开此文档"
+    ID_FILE_MRU_FILE12      "打开此文档"
+    ID_FILE_MRU_FILE13      "打开此文档"
+    ID_FILE_MRU_FILE14      "打开此文档"
+    ID_FILE_MRU_FILE15      "打开此文档"
+    ID_FILE_MRU_FILE16      "打开此文档"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回上一个窗格\n上一窗格"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "将活动窗口拆分为多个窗格\n拆分"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "清除所选内容\n清除"
+    ID_EDIT_CLEAR_ALL       "清除全部内容\n全部清除"
+    ID_EDIT_COPY            "复制所选内容，将其放入剪贴板\n复制"
+    ID_EDIT_CUT             "剪切所选内容，将其放入剪贴板\n剪切"
+    ID_EDIT_FIND            "查找指定的文本\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一操作\n重复"
+    ID_EDIT_REPLACE         "用其他文本替换特定的文本\n替换"
+    ID_EDIT_SELECT_ALL      "选定整个文档\n全选"
+    ID_EDIT_UNDO            "撤消上一操作\n撤消"
+    ID_EDIT_REDO            "重做上次撤消的操作\n重做"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_CAPTION_BAR     "显示或隐藏标题栏\n切换标题栏"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "更改窗口大小"
+    AFX_IDS_SCMOVE          "更改窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
+    AFX_IDS_SCMAXIMIZE      "将窗口放大到最大尺寸"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到上一个文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "将窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务列表"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预览"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STATUS_PANE1        "窗格 1"
+    IDS_STATUS_PANE2        "窗格 2"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CAPTION_BUTTON      "选项..."
+    IDS_CAPTION_BUTTON_TIP  "单击此处查看其他选项"
+    IDS_CAPTION_TEXT        "这是标题栏，可在其中向用户显示消息。"
+    IDS_CAPTION_IMAGE_TIP   "重要事项"
+    IDS_CAPTION_IMAGE_TEXT  "这是向用户显示的信息性消息。"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_MENU           "编辑"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#include "res\MSerialsUI.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#include "l.CHS\afxprint.rc"    // 打印/打印预览资源
+#if !defined(_AFXDLL)
+#include "l.CHS\afxribbon.rc"        // MFC 功能区和控制条资源
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
