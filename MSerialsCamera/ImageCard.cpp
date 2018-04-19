@@ -73,6 +73,7 @@ int CImageCard::Snap(int & width, int & height, unsigned char **data, int &ch, i
 	{
 		printf("manufactory(vendor) index out of range\n");
 	}
+	return 1;
 }
 
 void CImageCard::Close()

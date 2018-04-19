@@ -71,5 +71,7 @@
 #ifdef NEIXINGLUN
 #else
 //³©¶ûÏîÄ¿
-#define CHANGER
+#define CHANGER 1
 #endif
+
+

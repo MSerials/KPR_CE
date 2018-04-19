@@ -200,10 +200,11 @@ public:
 	BOOL RegSerial(LPCTSTR Reg)
 	{
 		//if (ERROR_SUCCESS == ::RegCreateKeyEx(hCKey, _T("testreg"), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, NULL, &hAKey, &dw))
+		//RegCreateKeyEx(HKEY_CURRENT_USER, DemoRegKey, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, NULL);
 		CRegKey key;
-		if (key.Open(HKEY_LOCAL_MACHINE, L"HARDWARE"))
+		if (key.Open(HKEY_CURRENT_USER, L"Software"))
 		{
-			if (key.Create(HKEY_LOCAL_MACHINE, L"HARDWARE"))
+			if (key.Create(HKEY_CURRENT_USER, L"Software",NULL, REG_OPTION_NON_VOLATILE))
 				return 0;
 			key.SetValue(Reg, L"Serial");
 		}
@@ -228,7 +229,7 @@ private:
 		CRegKey key;
 		DWORD dw = 1024;
 		char sValue[512] = { 0 };// = L"";
-		if (key.Open(HKEY_LOCAL_MACHINE, L"HARDWARE"))
+		if (key.Open(HKEY_CURRENT_USER, L"Software"))
 		{
 			key.Close();
 			return L"";
@@ -247,7 +248,7 @@ private:
 		CRegKey key;
 		DWORD dw = 1024;
 		char sValue[512] = { 0 };// = L"";
-		if (key.Open(HKEY_LOCAL_MACHINE, L"HARDWARE"))
+		if (key.Open(HKEY_CURRENT_USER, L"Software"))
 		{
 			key.Close();
 			return L"";

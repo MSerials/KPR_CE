@@ -13,7 +13,7 @@
 int printErrorAndExit(GENAPIC_RESULT errc)
 {
 	if (GENAPI_E_OK == errc) return 1;
-	char *errMsg;
+	char *errMsg = nullptr;
 	size_t length;
 
 	/* Retrieve the error message.
@@ -56,8 +56,190 @@ Basler::~Basler()
 	_close();  
 }
 
+
+int Basler::Init()
+{
+	size_t			DevNum;
+
+	PylonInitialize();
+	/* Enumerate all camera devices. You must call
+	PylonEnumerateDevices() before creating a device! */
+
+	res = PylonEnumerateDevices(&DevNum);
+	camera_num = DevNum<NUM_DEVICES ? DevNum : NUM_DEVICES;
+	printf("%d basler cameras found\n", camera_num);
+
+	if (0 != DevNum)
+	{
+		PylonDeviceInfo_t pDi;
+		for (int i = 0; i < static_cast<int>(DevNum); i++)
+		{
+			PylonGetDeviceInfo(i, &pDi);
+			pDi.UserDefinedName;
+			if (!strcmp("UPCamera", pDi.UserDefinedName))	id[0] = i;
+			if (!strcmp("BottomCamera", pDi.UserDefinedName))	id[1] = i;
+		}
+	}
+	if (0 == DevNum)	return 0;
+	if (1 == DevNum) { id[0] = 0; }
+	else if (-1 == id[0] || -1 == id[1]) { return -1; }
+	CHECK(res);
+
+
+
+
+	int flag = 3; //3 is equal to binanry 11
+	if (0 == DevNum)
+	{
+		PylonTerminate();
+		//pressEnterToExit();
+		return 0;
+		exit(EXIT_FAILURE);
+	}
+
+
+
+	else if (1 == DevNum)
+	{
+		res = InitCamera(hDev[0], "UPCamera", &imgBuff[0], 0);
+		if (GENAPI_E_OK == res)
+		{
+			return 2;
+		}
+		else
+		{
+			res = InitCamera(hDev[0], "BottomCamera", &imgBuff[0], 0);
+			if (GENAPI_E_OK == res) return 1;
+			else return 0;
+		}
+	}
+
+	else if (2 == DevNum)
+	{
+		res = InitCamera(hDev[0], "UPCamera", &imgBuff[0], id[0]);
+		if (GENAPI_E_OK != res) { flag &= ~2; }
+		res = InitCamera(hDev[1], "BottomCamera", &imgBuff[1], id[1]);
+		if (GENAPI_E_OK != res) { flag &= ~1; }
+		return flag;
+	}
+
+	else
+		return 0;
+
+
+}
+
+int Basler::InitCamera(PYLON_DEVICE_HANDLE & hDev, char * DevName, unsigned char ** imgBuf, int index)
+{
+	res = PylonCreateDeviceByIndex(index, &hDev);
+	CHECK(res);
+
+	/* Before using the device, it must be opened. Open it for configuring
+	parameters and for grabbing images. */
+	res = PylonDeviceOpen(hDev, PYLONC_ACCESS_MODE_CONTROL | PYLONC_ACCESS_MODE_STREAM);
+	CHECK(res);
+
+	/* Print out the name of the camera we are using. */
+	{
+		char buf[256];
+		size_t siz = sizeof(buf);
+		_Bool isReadable;
+
+		isReadable = PylonDeviceFeatureIsReadable(hDev, DevName);
+		if (isReadable)
+		{
+			res = PylonDeviceFeatureToString(hDev, DevName, buf, &siz);
+			CHECK(res);
+		}
+	}
+
+	/* Set the pixel format to Mono8, where gray values will be output as 8 bit values for each pixel. */
+	/* ... Check first to see if the device supports the Mono8 format. */
+	isAvail = PylonDeviceFeatureIsAvailable(hDev, "EnumEntry_PixelFormat_Mono8");
+	if (!isAvail)
+	{
+		return -1;
+		/* Feature is not available. */
+		fprintf(stderr, "Device doesn't support the Mono8 pixel format.");
+		PylonTerminate();
+		//pressEnterToExit();
+		exit(EXIT_FAILURE);
+	}
+	/* ... Set the pixel format to Mono8. */
+	res = PylonDeviceFeatureFromString(hDev, "PixelFormat", "Mono8");
+	CHECK(res);
+
+	/* Disable acquisition start trigger if available */
+	isAvail = PylonDeviceFeatureIsAvailable(hDev, "EnumEntry_TriggerSelector_AcquisitionStart");
+	if (isAvail)
+	{
+		res = PylonDeviceFeatureFromString(hDev, "TriggerSelector", "AcquisitionStart");
+		CHECK(res);
+		res = PylonDeviceFeatureFromString(hDev, "TriggerMode", "Off");
+		CHECK(res);
+	}
+
+	/* Disable frame burst start trigger if available. */
+	isAvail = PylonDeviceFeatureIsAvailable(hDev, "EnumEntry_TriggerSelector_FrameBurstStart");
+	if (isAvail)
+	{
+		res = PylonDeviceFeatureFromString(hDev, "TriggerSelector", "FrameBurstStart");
+		CHECK(res);
+		res = PylonDeviceFeatureFromString(hDev, "TriggerMode", "Off");
+		CHECK(res);
+	}
+
+	/* Disable frame start trigger if available */
+	isAvail = PylonDeviceFeatureIsAvailable(hDev, "EnumEntry_TriggerSelector_FrameStart");
+	if (isAvail)
+	{
+		res = PylonDeviceFeatureFromString(hDev, "TriggerSelector", "FrameStart");
+		CHECK(res);
+		res = PylonDeviceFeatureFromString(hDev, "TriggerMode", "Off");
+		CHECK(res);
+	}
+
+	/* For GigE cameras, we recommend increasing the packet size for better
+	performance. If the network adapter supports jumbo frames, set the packet
+	size to a value > 1500, e.g., to 8192. In this sample, we only set the packet size
+	to 1500. */
+	/* ... Check first to see if the GigE camera packet size parameter is supported
+	and if it is writable. */
+	isAvail = PylonDeviceFeatureIsWritable(hDev, "GevSCPSPacketSize");
+	if (isAvail)
+	{
+		/* ... The device supports the packet size feature. Set a value. */
+		res = PylonDeviceSetIntegerFeature(hDev, "GevSCPSPacketSize", 1500);
+		CHECK(res);
+	}
+
+	/* Determine the required size of the grab buffer. */
+	res = PylonDeviceGetIntegerFeatureInt32(hDev, "PayloadSize", &payloadSize[index]);
+	CHECK(res);
+
+	/* Allocate memory for grabbing. */
+	*imgBuf = (unsigned char*)malloc(payloadSize[index] * sizeof(char));
+#ifdef _TEST
+	printf("image size is %d\n", payloadSize[index]);
+#endif
+	if (NULL == *imgBuf)
+	{
+		return -2;
+		fprintf(stderr, "Out of memory.\n");
+		//PylonTerminate();
+		//pressEnterToExit();
+		
+		exit(EXIT_FAILURE);
+	}
+	return res;
+	return 0;
+}
+
+
+
 int Basler::refresh_list()
 {
+	return Init();
 	/* Before using any pylon methods, the pylon runtime must be initialized. */
 	PylonInitialize();
 	/* Enumerate all devices. You must call
@@ -74,6 +256,26 @@ int Basler::refresh_list()
 
 	camera_num = numDevicesAvail<NUM_DEVICES? numDevicesAvail: NUM_DEVICES ;
 	printf("%d basler cameras found\n",camera_num);
+
+	/**
+	if (0 != camera_num)
+	{
+		PylonDeviceInfo_t pDi;
+		for (int i = 0; i < static_cast<int>(camera_num); i++)
+		{
+			PylonGetDeviceInfo(i, &pDi);
+			pDi.UserDefinedName;
+			if (!strcmp("UPCamera", pDi.UserDefinedName))	id[0] = i;
+			if (!strcmp("BottomCamera", pDi.UserDefinedName))	id[1] = i;
+		}
+	}
+	if (0 == DevNum)	return 1;
+	if (1 == DevNum) { id[0] = 0; }
+	else if (-1 == id[0] || -1 == id[1]) { AfxMessageBox(L"是不是相机没有取名好，分别为UPCamera, BottomCamera"); return 0; }
+	*/
+	CHECK(res);
+
+
 
 	/* Create wait objects (must be done outside of the loop). */
 	res = PylonWaitObjectsCreate(&wos);
@@ -283,11 +485,12 @@ int Basler::refresh_list()
 	{
 		size_t i;
 		PYLON_WAITOBJECT_HANDLE hWait;
-		int32_t payloadSize;
+		//int32_t payloadSize;
 
 
 		/* Determine the required size of the grab buffer. */
-		res = PylonDeviceGetIntegerFeatureInt32(hDev[deviceIndex], "PayloadSize", &payloadSize);
+		res = PylonDeviceGetIntegerFeatureInt32(hDev[deviceIndex], "PayloadSize", &payloadSize[deviceIndex]);
+		imgBuff[deviceIndex] = (unsigned char*)malloc(payloadSize[deviceIndex] * sizeof(char));
 		error = res;
 		if (!CHECK(res)) return 22;
 
@@ -339,7 +542,7 @@ int Basler::refresh_list()
 		/* Allocate memory for grabbing.  */
 		for (i = 0; i < NUM_BUFFERS; ++i)
 		{
-			buffers[deviceIndex][i] = (unsigned char *)malloc(payloadSize);
+			buffers[deviceIndex][i] = (unsigned char *)malloc(payloadSize[deviceIndex]);
 			if (NULL == buffers[deviceIndex][i])
 			{
 				puts("Out of memory.\n");
@@ -356,7 +559,7 @@ int Basler::refresh_list()
 		error = res;
 		if (!CHECK(res)) return 29;
 		/* .. We will not use buffers bigger than payloadSize bytes. */
-		res = PylonStreamGrabberSetMaxBufferSize(hGrabber[deviceIndex], payloadSize);
+		res = PylonStreamGrabberSetMaxBufferSize(hGrabber[deviceIndex], payloadSize[deviceIndex]);
 		error = res;
 		if (!CHECK(res)) return 30;
 
@@ -374,7 +577,7 @@ int Basler::refresh_list()
 		raw pointers. */
 		for (i = 0; i < NUM_BUFFERS; ++i)
 		{
-			res = PylonStreamGrabberRegisterBuffer(hGrabber[deviceIndex], buffers[deviceIndex][i], payloadSize, &bufHandles[deviceIndex][i]);
+			res = PylonStreamGrabberRegisterBuffer(hGrabber[deviceIndex], buffers[deviceIndex][i], payloadSize[deviceIndex], &bufHandles[deviceIndex][i]);
 			error = res;
 			if (!CHECK(res)) return 32;
 		}
@@ -522,6 +725,33 @@ int Basler::Snap(int & width, int & height, unsigned char ** data, int & ch, int
 	static std::mutex mtx[NUM_DEVICES];
 	std::lock_guard<std::mutex> lck(mtx[camera_index]);
 	Sleep(delay);
+	//	unsigned char min, max;
+	PylonGrabResult_t grabResult;
+	_Bool bufferReady;
+
+	/* Grab one single frame from stream channel 0. The
+	camera is set to single frame acquisition mode.
+	Wait up to 500 ms for the image to be grabbed. */
+	res = PylonDeviceGrabSingleFrame(hDev[camera_index], 0, imgBuff[camera_index], payloadSize[camera_index],
+		&grabResult, &bufferReady, 500);
+	if (GENAPI_E_OK == res && !bufferReady)
+	{
+		/* Timeout occurred. */
+		width = 0;
+		height = 0;
+		*data = nullptr;
+		return 1;
+	}
+	width = grabResult.SizeX;
+	height = grabResult.SizeY;
+	*data = imgBuff[camera_index];
+	return 0;
+
+
+
+
+#if 0
+
 	_Bool isReady;
 	size_t woidx;
 	unsigned char min, max;
@@ -532,6 +762,7 @@ int Basler::Snap(int & width, int & height, unsigned char ** data, int & ch, int
 	height = grabResult.SizeY;
 	ch = 1;
 	return 0;
+//#endif
 	{
 
 		LARGE_INTEGER intv;
@@ -604,11 +835,8 @@ int Basler::Snap(int & width, int & height, unsigned char ** data, int & ch, int
 			res = PylonStreamGrabberQueueBuffer(hGrabber[woidx], grabResult.hBuffer, grabResult.Context);
 			if(!CHECK(res)) return 7;
 		}
-	
-
-
-
 	return 0;
+#endif
 }
 
 void Basler::set_exposure(double exposure, int camera_index)

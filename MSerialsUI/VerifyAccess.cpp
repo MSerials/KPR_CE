@@ -61,9 +61,10 @@ void VerifyAccess::OnBnClickedButtonOk()
 	}
 	else
 	{
+		delete pw;
 		EndDialog(0);
 	}
-	delete pw;
+	
 }
 
 

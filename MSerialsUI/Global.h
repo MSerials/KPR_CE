@@ -6,6 +6,8 @@
 #include "../MSerialsCommon/SelDir.h"
 #include "../MSerialsCommon/common.h"
 
+
+
 //显示历史记录的指针
 #include "HistoryDlg.h"
 //显示统计图对话框的指针

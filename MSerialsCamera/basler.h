@@ -59,10 +59,15 @@ private:
 	PYLON_STREAMGRABBER_HANDLE  hGrabber[NUM_DEVICES];    /* Handle for the pylon stream grabber. */
 	unsigned char              *buffers[NUM_DEVICES][NUM_BUFFERS];    /* Buffers used for grabbing. */
 	PYLON_STREAMBUFFER_HANDLE   bufHandles[NUM_DEVICES][NUM_BUFFERS]; /* Handles for the buffers. */
-
+	int32_t						payloadSize[NUM_DEVICES];
+	unsigned char              *imgBuff[NUM_DEVICES];
 public:
 	Basler(int method = 0) { Method = method; }
-	virtual ~Basler();// { std::cout << "freeing basler camera" << std::endl;  close();  }//To CLose camera};
+	virtual ~Basler();
+	int Init();
+	int InitCamera(PYLON_DEVICE_HANDLE &hDev, char * DevName, unsigned char** imgBuf, int index);
+	char id[256];
+	// { std::cout << "freeing basler camera" << std::endl;  close();  }//To CLose camera};
 	int refresh_list();
 	void _close();
 

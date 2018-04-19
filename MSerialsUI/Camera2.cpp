@@ -325,7 +325,8 @@ void Camera2::OnBnClickedButtonSnap2()
 	int ch = 1;
 	unsigned char * data = NULL;
 	//因为电脑性能不是很好，所以采用这个snap来采取图片
-	Snap(w, h, &data, ch, 0, 1, pMainFrm->sys.m_nSnapTimeDelay);
+	int res = Snap(w, h, &data, ch, 0, 1, pMainFrm->sys.m_nSnapTimeDelay);
+	printf("error to grab image code is %d\n", res);
 	if (NULL == data) return ;
 	Halcon::set_check("~give_error");
 	if (0 == w || 0 == h || NULL == data)	return ;

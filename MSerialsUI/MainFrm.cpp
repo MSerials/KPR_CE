@@ -142,7 +142,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 
 	//
-	if (!m_DockOperation.Create(_T("控制面板"), this, CRect(0, 0, 600, 1080), TRUE, 1001, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_RIGHT | CBRS_FLOAT_MULTI
+	if (!m_DockOperation.Create(_T("控制面板"), this, CRect(0, 0, 600, 1080), TRUE, 1001, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI
 		, AFX_CBRS_REGULAR_TABS | AFX_CBRS_RESIZE, AFX_CBRS_FLOAT// | AFX_CBRS_CLOSE  //| AFX_CBRS_AUTO_ROLLUP //| AFX_CBRS_FLOAT
 	))
 	{
@@ -176,7 +176,9 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 		return FALSE;
 	// TODO: 在此处通过修改
 	//  CREATESTRUCT cs 来修改窗口类或样式
-
+	//m_strTitle = L"浙江爱易特智能技术有限公司";
+	cs.lpszName = L"浙江爱易特智能技术有限公司";
+	cs.style &= ~(LONG)FWS_ADDTOTITLE;
 	return TRUE;
 }
 
@@ -369,6 +371,7 @@ void CMainFrame::OnClose()
 	global::GetIns()->txt->Save();
 	//delete global::GetIns()->txt;
 	close_device();
+
 	CFrameWndEx::OnClose();
 }
 

@@ -197,9 +197,11 @@
     <ClInclude Include="Camera1.h" />
     <ClInclude Include="Camera2.h" />
     <ClInclude Include="CTxt.h" />
+    <ClInclude Include="DMC1380Card.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="halcon.h" />
     <ClInclude Include="HistoryDlg.h" />
+    <ClInclude Include="Machine.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MSerialsCam.h" />
     <ClInclude Include="MSerialsCV.h" />

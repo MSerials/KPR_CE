@@ -108,6 +108,12 @@
     <ClInclude Include="CalSerials.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DMC1380Card.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Machine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MSerialsUI.cpp">

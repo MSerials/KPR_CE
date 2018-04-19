@@ -24,6 +24,10 @@
 #include "VerifyAccess.h"
 #include "CalSerials.h"
 
+#ifdef CHANGER
+#include "Machine.h"
+#endif
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -153,13 +157,13 @@ BOOL CMSerialsUIApp::InitInstance()
 	CMainFrame* pm = (CMainFrame*)AfxGetApp()->GetMainWnd();
 	pm->Resize();
 
-
-#ifdef _TEST
+	/**
+#if 0
 #pragma warning(disable: 4996)
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 #endif // DEBUG
-
+*/
 	//TensorFlow
 
 	SerialsVerify *pw = new SerialsVerify();
@@ -171,8 +175,21 @@ BOOL CMSerialsUIApp::InitInstance()
 		VerifyAccess d;
 		d.DoModal();
 	}
+
+#ifdef CHANGER
+	Machine::GetIns()->Init();
+#endif
 	return TRUE;
+
+
+	//IO运行窗口
+	//初始化dmc1380
+
+
 }
+
+
+
 
 int CMSerialsUIApp::ExitInstance()
 {
