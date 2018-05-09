@@ -90,7 +90,8 @@ public:
 			//处理函数后输出结果
 
 			pDlg->mc->WriteOutPutBit(6, 0);
-
+			pDlg->mc->WriteOutPutBit(3, 1);
+			pDlg->mc->WriteOutPutBit(2, 1);
 
 
 			using namespace Halcon;
@@ -145,8 +146,10 @@ public:
 				pMainFrm->ini.trect.r2,
 				pMainFrm->ini.trect.c2);
 			disp_obj(ROI, CImageCard::GetIns()->disp_hd);
-			write_string(CImageCard::GetIns()->disp_hd, str);
+			Halcon::write_string(CImageCard::GetIns()->disp_hd, str);
 
+			//关闭光源
+			pDlg->mc->WriteOutPutBit(6, 1);
 			//输出结果
 			if (isInv)
 			{
@@ -156,12 +159,11 @@ public:
 			{
 				pDlg->mc->WriteOutPutBit(2, 0);	
 			}
+
+			Sleep(5);
 			pDlg->mc->WriteOutPutBit(3, 0);
-			Sleep(120);
-			pDlg->mc->WriteOutPutBit(3, 1);
-			pDlg->mc->WriteOutPutBit(2, 1);
-			//关闭光源
-			pDlg->mc->WriteOutPutBit(6, 1);
+
+	
 
 
 			pDlg->evt_cam1.ResetEvent();
@@ -174,6 +176,9 @@ public:
 		Machine *pDlg = (Machine*)lp;
 		for (;;) {
 			::WaitForSingleObject(pDlg->evt_cam2, INFINITE);
+			pDlg->mc->WriteOutPutBit(5, 1);
+			pDlg->mc->WriteOutPutBit(4, 1);
+
 			//关闭光源
 			pDlg->mc->WriteOutPutBit(7, 0);
 			int Res = OBJECT_VOID;
@@ -187,7 +192,7 @@ public:
 			unsigned char * data = NULL;
 			//因为电脑性能不是很好，所以采用这个snap来采取图片
 			Snap(w, h, &data, ch, 0, 1, pMainFrm->sys.m_nSnapTimeDelay);
-			if (0 == w || 0 == h || NULL == data)	return OBJECT_NO_PIC;
+			if (0 == w || 0 == h || NULL == data)	Res = OBJECT_VOID;
 			Halcon::set_check("~give_error");
 			//因为在sdk里已经有缓存了，利用缓存来弄
 			try
@@ -195,20 +200,23 @@ public:
 				CImageCard::GetIns()->GenHobject(w, h, data, CImageCard::GetIns()->Image1, ch);
 				CImageCard::GetIns()->Disp_Obj(CImageCard::GetIns()->Image1, CImageCard::GetIns()->disp_hd1);
 				Halcon::set_tposition(CImageCard::GetIns()->disp_hd1, 0, 1);
-				double r = pMainFrm->ini.bcircle.r;
-				double c = pMainFrm->ini.bcircle.c;
-				double radius = pMainFrm->ini.bcircle.radius;
-				Herror error = CImageCard::GetIns()->hc_check_gear(CImageCard::GetIns()->Image1, CImageCard::GetIns()->disp_hd1, r, c, radius, 1, pMainFrm->ini.accurcy);
-				if (H_MSG_TRUE != error)
-					Res = OBJECT_VOID;
-				Res = OBJECT_OK;
+				double r1 = pMainFrm->ini.brect.r1;
+				double c1 = pMainFrm->ini.brect.c1;
+				double r2 = pMainFrm->ini.brect.r2;
+				double c2 = pMainFrm->ini.brect.c2;
+				set_tposition(CImageCard::GetIns()->disp_hd1, 0, 1);
+				Herror error = CImageCard::GetIns()->hc_check_gear(CImageCard::GetIns()->Image1, CImageCard::GetIns()->disp_hd1, r1, c1, r2, c2, 1, pMainFrm->ini.accurcy);
+				if (H_MSG_TRUE == error)
+					Res = OBJECT_OK;
 			}
 			catch (HException &message)
 			{
-				write_string(CImageCard::GetIns()->disp_hd1, message.message);
+				Halcon::write_string(CImageCard::GetIns()->disp_hd1, message.message);
 				Res = OBJECT_VOID;
 			}
 
+			//关闭光源
+			pDlg->mc->WriteOutPutBit(7, 1);
 			if (Res == OBJECT_VOID)
 			{
 				pDlg->mc->WriteOutPutBit(4, 1);
@@ -217,15 +225,13 @@ public:
 			{
 				pDlg->mc->WriteOutPutBit(4, 0);
 			}
+			Sleep(5);
 				pDlg->mc->WriteOutPutBit(5, 0);
 
-				Sleep(120);
-				pDlg->mc->WriteOutPutBit(5, 1);
-				pDlg->mc->WriteOutPutBit(4, 1);
+	
 		
 		
-				//关闭光源
-				pDlg->mc->WriteOutPutBit(7, 1);
+
 			pDlg->evt_cam2.ResetEvent();
 		}
 	}
