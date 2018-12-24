@@ -35,4 +35,5 @@ public:
 	afx_msg void OnBnClickedButtonSaveasb();
 	afx_msg void OnBnClickedButtonOpenf();
 	afx_msg void OnBnClickedButtonOpenb();
+	afx_msg void OnBnClickedButtonSaveimageincheck();
 };

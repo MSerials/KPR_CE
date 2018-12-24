@@ -165,6 +165,7 @@ public:
 	CString m_Prj_Vector;
 	CString m_Prj_Name;
 	CString m_COM;
+	int SaveImgInCheck = 0;
 	int m_Prj_Index;
 	int m_nESCPixel;
 

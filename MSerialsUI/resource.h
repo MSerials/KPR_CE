@@ -91,6 +91,8 @@
 #define IDC_COMBO_DST                   1014
 #define IDC_BUTTON_TRYTRAIN             1014
 #define IDC_EDIT_ACCURCY                1014
+#define IDC_BUTTON_OPENB2               1014
+#define IDC_BUTTON_SAVEIMAGEINCHECK     1014
 #define IDC_BUTTON_BREADIMG             1015
 #define IDC_BUTTON_SAVEACC              1015
 #define IDC_BUTTON_BDEAL_TEST           1016

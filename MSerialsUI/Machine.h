@@ -121,6 +121,16 @@ public:
 			src.data = data;
 			Halcon::set_tposition(CImageCard::GetIns()->disp_hd, 0, 1);
 			float res = cv_predict_inv(src, rt, false);
+			if (pMainFrm->sys.SaveImgInCheck != 0)
+			{
+				win_tool wt;
+				CString AppPath = wt.AppPath();
+				CString BacksDir = AppPath + L"\\" + pMainFrm->sys.m_Prj_Name + L"\\IMAGES";
+				CString ImageName = BacksDir+wt.Get_Date_Time() + ".bmp";
+				::CreateDirectory(BacksDir, NULL);
+				cv::imwrite((char*)(LPCSTR)(CStringA)(ImageName),src);
+			}
+			
 			CImageCard::GetIns()->MatToHImage(src, CImageCard::GetIns()->Image);
 			CImageCard::GetIns()->Disp_Obj(CImageCard::GetIns()->Image, CImageCard::GetIns()->disp_hd);
 
@@ -132,10 +142,19 @@ public:
 			{
 				sprintf(str, "正面 预测值:%f", res);
 				Halcon::set_color(CImageCard::GetIns()->disp_hd, "green");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "green");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "green");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "green");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "green");
+
 			}
 			else
 			{
 				sprintf(str, "反面或无料 预测值:%f", res);
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "red");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "red");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "red");
+				Halcon::set_color(CImageCard::GetIns()->disp_hd, "red");
 				Halcon::set_color(CImageCard::GetIns()->disp_hd, "red");
 				isInv = true;
 			}

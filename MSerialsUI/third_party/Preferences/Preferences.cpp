@@ -598,6 +598,8 @@ void CPreferences::LoadParaFile(UINT item)
 			tcircle.radius = GetValueF(L"IMAGE_SETTING", L"TCRIDUS");
 
 			accurcy = GetValueF(L"IMAGE_SETTING", L"BACC");
+			SaveImgInCheck = GetValueI(L"IMAGE_SETTING", L"ISSAVE");
+
 
 		}
 
@@ -645,7 +647,9 @@ void CPreferences::SaveParaFile(UINT item)
 
 		SetValueF(L"IMAGE_SETTING", L"BACC", accurcy);
 
+		SetValueI(L"IMAGE_SETTING", L"ISSAVE", SaveImgInCheck);
 
+	
 	}
 	if(PARA_IO==(mask&PARA_IO))
 	{

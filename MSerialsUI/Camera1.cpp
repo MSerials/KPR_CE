@@ -45,6 +45,7 @@ BEGIN_MESSAGE_MAP(Camera1, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_SAVEASB, &Camera1::OnBnClickedButtonSaveasb)
 	ON_BN_CLICKED(IDC_BUTTON_OPENF, &Camera1::OnBnClickedButtonOpenf)
 	ON_BN_CLICKED(IDC_BUTTON_OPENB, &Camera1::OnBnClickedButtonOpenb)
+	ON_BN_CLICKED(IDC_BUTTON_SAVEIMAGEINCHECK, &Camera1::OnBnClickedButtonSaveimageincheck)
 END_MESSAGE_MAP()
 
 
@@ -336,6 +337,17 @@ BOOL Camera1::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	CMainFrame *pMainFrm = (CMainFrame*)AfxGetApp()->GetMainWnd();
 	CString fileName =  pMainFrm->sys.m_Prj_Name;
+
+	if (pMainFrm->sys.SaveImgInCheck == 0)
+	{
+		SetDlgItemText(IDC_BUTTON_SAVEIMAGEINCHECK, L"处于保存图片状态");
+	}
+	else
+	{
+		SetDlgItemText(IDC_BUTTON_SAVEIMAGEINCHECK, L"不在保存图片状态");
+	}
+
+
 	if (false == load_train_data((char*)(LPCSTR)(CStringA)fileName))
 	{
 		AfxMessageBox(L"没有读取到检测正反的参数");
@@ -466,4 +478,24 @@ void Camera1::OnBnClickedButtonOpenb()
 	CString BacksDir = AppPath + L"\\" + pMainFrm->sys.m_Prj_Name + L"\\HOLEBACK";
 	::CreateDirectory(BacksDir, NULL);
 	ShellExecute(NULL, _T("open"), _T("explorer.exe"), BacksDir, NULL, SW_SHOWNORMAL);
+}
+
+
+void Camera1::OnBnClickedButtonSaveimageincheck()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CMainFrame *pMainFrm = (CMainFrame*)AfxGetApp()->GetMainWnd();
+	if (pMainFrm->sys.SaveImgInCheck != 0)
+	{
+		pMainFrm->sys.SaveImgInCheck = 0;
+		SetDlgItemText(IDC_BUTTON_SAVEIMAGEINCHECK, L"处于保存图片状态");
+	}
+	else
+	{
+		pMainFrm->sys.SaveImgInCheck = 1;
+		SetDlgItemText(IDC_BUTTON_SAVEIMAGEINCHECK, L"不在保存图片状态");
+	}
+
+
+
 }

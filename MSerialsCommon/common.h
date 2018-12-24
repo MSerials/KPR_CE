@@ -54,7 +54,7 @@
 
 
 #ifndef hog_width
-#define hog_width 128
+#define hog_width 384
 #endif 
 #ifndef hog_height
 #define hog_height 128
