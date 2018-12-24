@@ -496,6 +496,6 @@ void Camera1::OnBnClickedButtonSaveimageincheck()
 		SetDlgItemText(IDC_BUTTON_SAVEIMAGEINCHECK, L"²»ÔÚ±£´æÍ¼Æ¬×´Ì¬");
 	}
 
-
+	pMainFrm->sys.SaveParaFile(-1);
 
 }
